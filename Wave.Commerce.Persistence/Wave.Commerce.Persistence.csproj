@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Wave.Commerce.Application\Wave.Commerce.Application.csproj" />
     <ProjectReference Include="..\Wave.Commerce.Domain\Wave.Commerce.Domain.csproj" />
   </ItemGroup>
 

@@ -1,9 +1,11 @@
 ﻿
+using FluentValidation;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Wave.Commerce.Persistence;
+using System.Reflection;
 using Wave.Commerce.Persistence.Context;
 
 namespace DependencyInjection;
@@ -15,13 +17,23 @@ public static class Injector
         IConfiguration configuration)
     {
         AddPersistenceServices(services, configuration);
+        AddApplicationServices(services);
 
         return services;
     }
 
+    private static void AddApplicationServices(IServiceCollection services)
+    {
+        Assembly applicationAssembly = typeof(Wave.Commerce.Application.AssemblyReference).Assembly;
+
+        services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(typeof(Wave.Commerce.Application.AssemblyReference).GetTypeInfo().Assembly));
+        services.AddScoped<IMediator, Mediator>();
+        services.AddValidatorsFromAssembly(applicationAssembly, includeInternalTypes: true);
+    }
+
     private static void AddPersistenceServices(IServiceCollection services, IConfiguration configuration)
     {
-        string? persistenceAssemblyName = typeof(AssemblyReference).Assembly.GetName().Name;
+        string? persistenceAssemblyName = typeof(Wave.Commerce.Persistence.AssemblyReference).Assembly.GetName().Name;
 
         services.AddDbContext<ApplicationDbContext>(opt =>
         {
