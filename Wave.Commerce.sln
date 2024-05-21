@@ -13,6 +13,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wave.Commerce.Persistence",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wave.Commerce.DependencyInjection", "DependencyInjection\Wave.Commerce.DependencyInjection.csproj", "{991C5DC1-7966-40CF-8491-62198CAEC480}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{139A415D-7632-476A-940C-F161F9BC5F16}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wave.Commerce.API", "Wave.Commerce.API\Wave.Commerce.API.csproj", "{42A2A79B-8C19-4F5C-9129-C927351632E3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +35,10 @@ Global
 		{991C5DC1-7966-40CF-8491-62198CAEC480}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{991C5DC1-7966-40CF-8491-62198CAEC480}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{991C5DC1-7966-40CF-8491-62198CAEC480}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42A2A79B-8C19-4F5C-9129-C927351632E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42A2A79B-8C19-4F5C-9129-C927351632E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42A2A79B-8C19-4F5C-9129-C927351632E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42A2A79B-8C19-4F5C-9129-C927351632E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -39,6 +47,7 @@ Global
 		{5E9075AD-ACE8-464C-B803-F06D974D2052} = {F0E9B163-00A0-4B46-B44F-E8D8F636FC14}
 		{8D4A2BC3-9176-4AA3-A48B-3E6EB80CACA6} = {4888185F-1AF5-494E-A019-FF9058A907EC}
 		{991C5DC1-7966-40CF-8491-62198CAEC480} = {4888185F-1AF5-494E-A019-FF9058A907EC}
+		{42A2A79B-8C19-4F5C-9129-C927351632E3} = {139A415D-7632-476A-940C-F161F9BC5F16}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {53E0077B-2992-4268-B09F-0FD238FB6E75}

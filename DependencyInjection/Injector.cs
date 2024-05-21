@@ -10,7 +10,7 @@ namespace DependencyInjection;
 
 public static class Injector
 {
-    public static IServiceCollection AddService(
+    public static IServiceCollection AddServices(
         this IServiceCollection services,
         IConfiguration configuration)
     {
