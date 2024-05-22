@@ -10,7 +10,7 @@ public abstract class BaseEntity : IEntity<Guid>
         Id = Guid.NewGuid();
     }
 
-    public Guid Id { get; }
+    public Guid Id { get; set; }
     public DateTimeOffset CreatedDate { get; set; }
     public DateTimeOffset UpdatedDate { get; set; }
 }
