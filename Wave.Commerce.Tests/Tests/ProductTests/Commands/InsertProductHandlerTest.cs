@@ -79,4 +79,35 @@ public class InsertProductHandlerTest
         result.Error.Message.Should().Be($"Error when trying to insert product:{command}, {exceptionMessage}");
     }
 
+    [Fact]
+    public async Task Handle_ShouldReturnErrorResult_WhenCreateEntityWithNegativeValue()
+    {
+        // Arrange
+        var command = new InsertProductCommand(
+            _faker.Commerce.ProductName(),
+            _faker.Random.Decimal(1, 1000),
+            _faker.Random.Int(1, 100)
+        );
+
+        var product = Product.CreateEntity(command.Name, command.Value, command.StockQuantity);
+        product.Id = Guid.NewGuid();
+
+        _mockProductRepository
+            .Setup(repo => repo.Add(It.IsAny<Product>()))
+            .Callback<Product>(p => p.Id = product.Id);
+
+        _mockProductRepository
+            .Setup(repo => repo.SaveChangesAsync(It.IsAny<CancellationToken>()))
+            .Returns(Task.CompletedTask);
+
+        // Act
+        var result = await _handler.Handle(command, CancellationToken.None);
+
+        // Assert
+        result.IsSuccess.Should().BeTrue();
+        result.Value.Should().Be(product.Id);
+
+        _mockProductRepository.Verify(repo => repo.Add(It.IsAny<Product>()), Times.Once);
+        _mockProductRepository.Verify(repo => repo.SaveChangesAsync(It.IsAny<CancellationToken>()), Times.Once);
+    }
 }
