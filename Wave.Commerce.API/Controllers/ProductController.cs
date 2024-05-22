@@ -4,6 +4,9 @@ using Wave.Commerce.API.Controllers.Base;
 using Wave.Commerce.Application.Features.ProductFeatures.Commands.DeleteProduct;
 using Wave.Commerce.Application.Features.ProductFeatures.Commands.InsertProduct;
 using Wave.Commerce.Application.Features.ProductFeatures.Commands.UpdateProduct;
+using Wave.Commerce.Application.Features.ProductFeatures.Queries;
+using Wave.Commerce.Application.Features.ProductFeatures.Queries.ListProductByName;
+using Wave.Commerce.Application.Features.ProductFeatures.Queries.ListProductOrderedBy;
 using Wave.Commerce.Domain.Shared;
 
 namespace Wave.Commerce.API.Controllers;
@@ -46,6 +49,30 @@ public class ProductController : WaveCommerceBaseController
     public async Task<IActionResult> Delete(Guid productId, CancellationToken cancellationToken)
     {
         Result<string> result = await _mediator.Send(new DeleteProductCommand(productId), cancellationToken);
+
+        return result.IsSuccess
+            ? Ok(result.Value)
+            : HandleFailure(result);
+    }
+
+    [HttpGet("list/{productName}")]
+    [ProducesResponseType(200)]
+    [ProducesResponseType(typeof(ProblemDetails), 404)]
+    public async Task<IActionResult> GetByName(string productName, CancellationToken cancellationToken)
+    {
+        Result<List<ProductResult>> result = await _mediator.Send(new ListProductByNameQuery(productName), cancellationToken);
+
+        return result.IsSuccess
+            ? Ok(result.Value)
+            : HandleFailure(result);
+    }
+
+    [HttpGet("orderBy/{field}")]
+    [ProducesResponseType(200)]
+    [ProducesResponseType(typeof(ProblemDetails), 404)]
+    public async Task<IActionResult> GetByFields(string field, int? stockValue, CancellationToken cancellationToken)
+    {
+        Result<List<ProductResult>> result = await _mediator.Send(new ListProductOrderByFieldsQuery(field, stockValue), cancellationToken);
 
         return result.IsSuccess
             ? Ok(result.Value)
