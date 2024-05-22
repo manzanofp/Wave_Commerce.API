@@ -36,4 +36,20 @@ public class Product : BaseEntity
 
         return new Product(name, value, stockQuantity);
     }
+
+    public void UpdateFields(string name, decimal value, int stockQuantity)
+    {
+        if (string.IsNullOrWhiteSpace(name))
+            throw new ArgumentException("Name cannot be null or empty", nameof(name));
+
+        if (value < 0)
+            throw new ArgumentOutOfRangeException(nameof(value), "Value cannot be negative.");
+
+        if (stockQuantity < 0)
+            throw new ArgumentOutOfRangeException(nameof(stockQuantity), "StockQuantity cannot be negative.");
+
+        Name = name;
+        Value = value;
+        StockQuantity = stockQuantity;
+    }
 }

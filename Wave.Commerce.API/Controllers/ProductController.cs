@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Wave.Commerce.API.Controllers.Base;
 using Wave.Commerce.Application.Features.ProductFeatures.Commands.InsertProduct;
+using Wave.Commerce.Application.Features.ProductFeatures.Commands.UpdateProduct;
 using Wave.Commerce.Domain.Shared;
 
 namespace Wave.Commerce.API.Controllers;
@@ -26,4 +27,15 @@ public class ProductController : WaveCommerceBaseController
             : HandleFailure(result);
     }
 
+    [HttpPut]
+    [ProducesResponseType(200)]
+    [ProducesResponseType(typeof(ProblemDetails), 400)]
+    public async Task<IActionResult> UpdateFields(UpdateProductCommand command, CancellationToken cancellationToken)
+    {
+        Result<string> result = await _mediator.Send(command, cancellationToken);
+
+        return result.IsSuccess
+            ? Ok(result.Value)
+            : HandleFailure(result);
+    }
 }

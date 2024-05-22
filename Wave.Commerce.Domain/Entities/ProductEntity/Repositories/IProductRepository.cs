@@ -4,5 +4,6 @@ namespace Wave.Commerce.Domain.Entities.ProductEntity.Repositories;
 
 public interface IProductRepository : IBaseRepository<Product, Guid>
 {
-    Task<Product?> GetByName(string name);
+    Task<Product?> GetById(Guid id);
+    Task<Product?> GetByName(string name);   
 }

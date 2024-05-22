@@ -9,5 +9,7 @@ public class ProductRepository : BaseRepository<Product, Guid>, IProductReposito
 {
     public ProductRepository(ApplicationDbContext dbContext) : base(dbContext) { }
 
+    public Task<Product?> GetById(Guid id) => Get().Where(x => x.Id == id).FirstOrDefaultAsync();
+
     public Task<Product?> GetByName(string name) => Get().Where(x => x.Name == name).FirstOrDefaultAsync();
 }
