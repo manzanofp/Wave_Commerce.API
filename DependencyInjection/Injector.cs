@@ -6,7 +6,9 @@ using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
+using Wave.Commerce.Domain.Entities.ProductEntity.Repositories;
 using Wave.Commerce.Persistence.Context;
+using Wave.Commerce.Persistence.Repositories;
 
 namespace DependencyInjection;
 
@@ -47,6 +49,8 @@ public static class Injector
                 builder.EnableRetryOnFailure(5, TimeSpan.FromSeconds(20), null);
             });
         });
+
+        services.AddScoped<IProductRepository, ProductRepository>();
 
         services.AddDbContext<ApplicationDbContext>();
     }
