@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  wavecommerce:
+    build:
+      context: .
+      dockerfile: Wave.Commerce.API/Dockerfile
+    environment:
+      - ConnectionStrings__DatabaseConnection=Server=db;Database=WaveCommerce;UID=postgres;PWD=123456;Include Error Detail=true
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+
+  db:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_DB: WaveCommerce
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
+    volumes:
+      - dbData:/var/lib/postgresql/data
+
+  adminer:
+    image: adminer:latest
+    restart: always
+    ports:
+      - "8086:8080"
+
+volumes:
+  dbData:

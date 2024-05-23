@@ -1,4 +1,5 @@
 using Wave.Commerce.DependencyInjection;
+using Wave.Commerce.Persistence.StartupService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,12 +10,10 @@ builder.Services.AddScoped<IApplicationBuilder, ApplicationBuilder>();
 builder.Services.AddServices(builder.Configuration);
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+await new EntityFrameworkCoreMigrator(app.Services).ApplyMigrationsWithRetryAsync();
+
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 

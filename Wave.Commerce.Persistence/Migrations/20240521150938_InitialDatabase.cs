@@ -24,6 +24,18 @@ namespace Wave.Commerce.Persistence.Migrations
                 {
                     table.PrimaryKey("PK_Products", x => x.Id);
                 });
+
+            migrationBuilder.InsertData(
+                table: "Products",
+                columns: new[] { "Id", "Name", "Value", "StockQuantity", "CreatedDate", "UpdatedDate" },
+                values: new object[,]
+                {
+                    { Guid.NewGuid(), "Apple Iphone 13", 799.99m, 50, DateTimeOffset.UtcNow, DateTimeOffset.UtcNow },
+                    { Guid.NewGuid(), "Samsung Galaxy S21", 699.99m,  70, DateTimeOffset.UtcNow, DateTimeOffset.UtcNow },
+                    { Guid.NewGuid(), "Dell XPS 13 Laptop", 999.80m,  150, DateTimeOffset.UtcNow, DateTimeOffset.UtcNow },
+                    { Guid.NewGuid(), "Amazon Echo Dot (4th Gen)", 60.50m,  350, DateTimeOffset.UtcNow, DateTimeOffset.UtcNow },
+                    { Guid.NewGuid(), "Galaxy Watch pro 5", 1260.50m,  350, DateTimeOffset.UtcNow, DateTimeOffset.UtcNow }
+                });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
