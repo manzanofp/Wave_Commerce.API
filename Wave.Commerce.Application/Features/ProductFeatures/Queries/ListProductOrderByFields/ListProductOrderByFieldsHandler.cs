@@ -25,7 +25,7 @@ public class ListProductOrderByFieldsHandler : IQueryHandler<ListProductOrderByF
             if (productOrderBy == null)
             {
                 _logger.LogWarning($"Product order by field: {request.Field} not found.");
-                return Result.WithError<List<ProductResult>>($"Product order by field:  {request.Field} not found.");
+                return Result.WithError<List<ProductResult>>($"Product order by field: {request.Field} not found.");
             }
 
             var result = productOrderBy.Select(x => new ProductResult(
