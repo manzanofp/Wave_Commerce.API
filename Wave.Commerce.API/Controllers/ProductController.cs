@@ -5,6 +5,7 @@ using Wave.Commerce.Application.Features.ProductFeatures.Commands.DeleteProduct;
 using Wave.Commerce.Application.Features.ProductFeatures.Commands.InsertProduct;
 using Wave.Commerce.Application.Features.ProductFeatures.Commands.UpdateProduct;
 using Wave.Commerce.Application.Features.ProductFeatures.Queries;
+using Wave.Commerce.Application.Features.ProductFeatures.Queries.ListProductById;
 using Wave.Commerce.Application.Features.ProductFeatures.Queries.ListProductByName;
 using Wave.Commerce.Application.Features.ProductFeatures.Queries.ListProductOrderedBy;
 using Wave.Commerce.Domain.Shared;
@@ -16,7 +17,6 @@ namespace Wave.Commerce.API.Controllers;
 public class ProductController : WaveCommerceBaseController
 {
     private readonly IMediator _mediator;
-
     public ProductController(IMediator mediator) => _mediator = mediator;
 
     [HttpPost]
@@ -55,12 +55,12 @@ public class ProductController : WaveCommerceBaseController
             : HandleFailure(result);
     }
 
-    [HttpGet("list/{productName}")]
+    [HttpGet("{productId:Guid}")]
     [ProducesResponseType(200)]
     [ProducesResponseType(typeof(ProblemDetails), 404)]
-    public async Task<IActionResult> GetByName(string productName, CancellationToken cancellationToken)
+    public async Task<IActionResult> GetById(Guid productId, CancellationToken cancellationToken)
     {
-        Result<List<ProductResult>> result = await _mediator.Send(new ListProductByNameQuery(productName), cancellationToken);
+        Result<ProductResult> result = await _mediator.Send(new ListProductByIdQuery(productId), cancellationToken);
 
         return result.IsSuccess
             ? Ok(result.Value)
@@ -73,6 +73,18 @@ public class ProductController : WaveCommerceBaseController
     public async Task<IActionResult> GetByFields(string field, int? stockValue, CancellationToken cancellationToken)
     {
         Result<List<ProductResult>> result = await _mediator.Send(new ListProductOrderByFieldsQuery(field, stockValue), cancellationToken);
+
+        return result.IsSuccess
+            ? Ok(result.Value)
+            : HandleFailure(result);
+    }
+
+    [HttpGet("list/{productName}")]
+    [ProducesResponseType(200)]
+    [ProducesResponseType(typeof(ProblemDetails), 404)]
+    public async Task<IActionResult> GetByName(string productName, CancellationToken cancellationToken)
+    {
+        Result<List<ProductResult>> result = await _mediator.Send(new ListProductByNameQuery(productName), cancellationToken);
 
         return result.IsSuccess
             ? Ok(result.Value)
