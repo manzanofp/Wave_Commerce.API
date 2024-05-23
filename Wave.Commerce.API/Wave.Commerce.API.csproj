@@ -14,7 +14,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DependencyInjection\Wave.Commerce.DependencyInjection.csproj" />
+    <ProjectReference Include="..\Wave.Commerce.DependencyInjection\Wave.Commerce.DependencyInjection.csproj" />
+    <ProjectReference Include="..\Wave.Commerce.DependencyInjection\Wave.Commerce.DependencyInjection.csproj" />
     <ProjectReference Include="..\Wave.Commerce.Domain\Wave.Commerce.Domain.csproj" />
     <ProjectReference Include="..\Wave.Commerce.Persistence\Wave.Commerce.Persistence.csproj" />
   </ItemGroup>

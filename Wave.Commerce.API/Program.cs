@@ -1,4 +1,4 @@
-using DependencyInjection;
+using Wave.Commerce.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 

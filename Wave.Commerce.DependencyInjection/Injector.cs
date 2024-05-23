@@ -10,7 +10,7 @@ using Wave.Commerce.Domain.Entities.ProductEntity.Repositories;
 using Wave.Commerce.Persistence.Context;
 using Wave.Commerce.Persistence.Repositories;
 
-namespace DependencyInjection;
+namespace Wave.Commerce.DependencyInjection;
 
 public static class Injector
 {

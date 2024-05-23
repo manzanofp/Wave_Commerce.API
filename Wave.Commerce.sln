@@ -11,7 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wave.Commerce.Persistence", "Wave.Commerce.Persistence\Wave.Commerce.Persistence.csproj", "{8D4A2BC3-9176-4AA3-A48B-3E6EB80CACA6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wave.Commerce.DependencyInjection", "DependencyInjection\Wave.Commerce.DependencyInjection.csproj", "{991C5DC1-7966-40CF-8491-62198CAEC480}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wave.Commerce.DependencyInjection", "Wave.Commerce.DependencyInjection\Wave.Commerce.DependencyInjection.csproj", "{991C5DC1-7966-40CF-8491-62198CAEC480}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{139A415D-7632-476A-940C-F161F9BC5F16}"
 EndProject
