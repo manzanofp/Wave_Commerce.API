@@ -23,7 +23,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wave.Commerce.Application",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{C8866DD0-595B-4C25-A5CA-FD0A07DB8071}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wave.Commerce.Tests", "Wave.Commerce.Tests\Wave.Commerce.Tests.csproj", "{D3F26D4B-58C6-4121-9C92-69E349C10775}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wave.Commerce.Tests", "Wave.Commerce.Tests\Wave.Commerce.Tests.csproj", "{D3F26D4B-58C6-4121-9C92-69E349C10775}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wave.Commerce.IntegrationTests", "Wave.Commerce.IntegrationTests\Wave.Commerce.IntegrationTests.csproj", "{215BD437-A409-493D-BB66-AAB6E5C48720}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +57,10 @@ Global
 		{D3F26D4B-58C6-4121-9C92-69E349C10775}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D3F26D4B-58C6-4121-9C92-69E349C10775}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D3F26D4B-58C6-4121-9C92-69E349C10775}.Release|Any CPU.Build.0 = Release|Any CPU
+		{215BD437-A409-493D-BB66-AAB6E5C48720}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{215BD437-A409-493D-BB66-AAB6E5C48720}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{215BD437-A409-493D-BB66-AAB6E5C48720}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{215BD437-A409-493D-BB66-AAB6E5C48720}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -66,6 +72,7 @@ Global
 		{42A2A79B-8C19-4F5C-9129-C927351632E3} = {139A415D-7632-476A-940C-F161F9BC5F16}
 		{D73DE33F-6AE5-46B5-8F57-CA7741787AF8} = {E8E62187-1E79-44ED-9D92-E3B90A0196C6}
 		{D3F26D4B-58C6-4121-9C92-69E349C10775} = {C8866DD0-595B-4C25-A5CA-FD0A07DB8071}
+		{215BD437-A409-493D-BB66-AAB6E5C48720} = {C8866DD0-595B-4C25-A5CA-FD0A07DB8071}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {53E0077B-2992-4268-B09F-0FD238FB6E75}

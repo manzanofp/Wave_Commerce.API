@@ -20,4 +20,8 @@
     <ProjectReference Include="..\Wave.Commerce.Persistence\Wave.Commerce.Persistence.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <InternalsVisibleTo Include="Wave.Commerce.IntegrationTests" />
+  </ItemGroup>
+  
 </Project>
