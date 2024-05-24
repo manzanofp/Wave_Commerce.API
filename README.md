@@ -1,8 +1,7 @@
 ### Wave_Commerce.API
-Repositório com o projeto para a vaga de desenvolvedor backend dotnet
+Repositório com o projeto para a vaga de desenvolvedor backend dotnet Júnior.
 
 ### 📌 Sobre o Projeto
-
 Esta API é responsável por realizar o CRUD de um Produto. e possui como funcionalidades pricipais:
 * Fornece Endpoints com as operações de acordo a regra de negócio estabelecida.
 * Armazenamento dos dados no PostgreSQL.
