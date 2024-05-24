@@ -24,6 +24,7 @@ public class InsertProductHandlerTest
     }
 
     [Fact]
+    [Trait("Category", "Unit")]
     public async Task Handle_ShouldReturnSuccessResult_WhenProductIsInsertedSuccessfully()
     {
         // Arrange
@@ -56,6 +57,7 @@ public class InsertProductHandlerTest
     }
 
     [Fact]
+    [Trait("Category", "Unit")]
     public async Task Handle_ShouldReturnErrorResult_WhenExceptionIsThrown()
     {
         // Arrange
@@ -80,6 +82,7 @@ public class InsertProductHandlerTest
     }
 
     [Fact]
+    [Trait("Category", "Unit")]
     public async Task Handle_ShouldReturnErrorResult_WhenCreateEntityWithNegativeValue()
     {
         // Arrange

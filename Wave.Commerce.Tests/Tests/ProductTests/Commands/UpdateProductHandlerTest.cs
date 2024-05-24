@@ -24,6 +24,7 @@ public class UpdateProductHandlerTest
     }
 
     [Fact]
+    [Trait("Category", "Unit")]
     public async Task Handle_ProductExists_ShouldUpdateProduct()
     {
         // Arrange
@@ -56,6 +57,7 @@ public class UpdateProductHandlerTest
     }
 
     [Fact]
+    [Trait("Category", "Unit")]
     public async Task Handle_RepositoryThrowsException_ShouldReturnError()
     {
         // Arrange

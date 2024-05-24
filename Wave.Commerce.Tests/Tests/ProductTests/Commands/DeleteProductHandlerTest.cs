@@ -2,6 +2,7 @@
 using FluentAssertions;
 using Microsoft.Extensions.Logging;
 using Moq;
+using System.ComponentModel;
 using Wave.Commerce.Application.Features.ProductFeatures.Commands.DeleteProduct;
 using Wave.Commerce.Domain.Entities.ProductEntity;
 using Wave.Commerce.Domain.Entities.ProductEntity.Repositories;
@@ -24,6 +25,7 @@ public class DeleteProductHandlerTest
     }
 
     [Fact]
+    [Trait("Category","Unit")]
     public async Task Handle_ProductExists_ShouldDeleteProduct()
     {
         // Arrange
@@ -54,6 +56,7 @@ public class DeleteProductHandlerTest
 
 
     [Fact]
+    [Trait("Category", "Unit")]
     public async Task Handle_ProductDoesNotExist_ShouldReturnError()
     {
         // Arrange
@@ -76,6 +79,7 @@ public class DeleteProductHandlerTest
     }
 
     [Fact]
+    [Trait("Category", "Unit")]
     public async Task Handle_RepositoryThrowsException_ShouldReturnError()
     {
         // Arrange

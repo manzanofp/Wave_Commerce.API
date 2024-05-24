@@ -25,6 +25,7 @@ public class ListProductByNameHandlerTest
     }
 
     [Fact]
+    [Trait("Category", "Unit")]
     public async Task Handle_ShouldReturnProducts_WhenProductsExist()
     {
         // Arrange
@@ -61,6 +62,7 @@ public class ListProductByNameHandlerTest
     }
 
     [Fact]
+    [Trait("Category", "Unit")]
     public async Task Handle_ShouldReturnError_WhenProductsDoNotExist()
     {
         // Arrange
@@ -80,6 +82,7 @@ public class ListProductByNameHandlerTest
     }
 
     [Fact]
+    [Trait("Category", "Unit")]
     public async Task Handle_ShouldReturnError_WhenRepositoryThrowsException()
     {
         // Arrange

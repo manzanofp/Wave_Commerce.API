@@ -26,6 +26,7 @@ public class ListProductOrderByFieldsHandlerTest
     }
 
     [Fact]
+    [Trait("Category", "Unit")]
     public async Task Handle_ShouldReturnProducts_WhenProductsExistOrderedByName()
     {
         var products = new List<Product>
@@ -61,6 +62,7 @@ public class ListProductOrderByFieldsHandlerTest
     }
 
     [Fact]
+    [Trait("Category", "Unit")]
     public async Task Handle_ShouldReturnProductsOrderedByValue_WhenFieldIsValue()
     {
         // Arrange
@@ -101,6 +103,7 @@ public class ListProductOrderByFieldsHandlerTest
     }
 
     [Fact]
+    [Trait("Category", "Unit")]
     public async Task Handle_ShouldReturnProductsOrderedByStock_WhenFieldIsStockAndStockValueIsNull()
     {
         // Arrange
@@ -141,6 +144,7 @@ public class ListProductOrderByFieldsHandlerTest
     }
 
     [Fact]
+    [Trait("Category", "Unit")]
     public async Task Handle_ShouldReturnError_WhenProductsDoNotExist()
     {
         // Arrange
@@ -158,6 +162,7 @@ public class ListProductOrderByFieldsHandlerTest
     }
 
     [Fact]
+    [Trait("Category", "Unit")]
     public async Task Handle_ShouldReturnError_WhenRepositoryThrowsException()
     {
         // Arrange
