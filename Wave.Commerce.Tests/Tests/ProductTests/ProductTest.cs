@@ -1,5 +1,6 @@
 ﻿using Bogus;
 using FluentAssertions;
+using System.ComponentModel;
 using Wave.Commerce.Domain.Entities.ProductEntity;
 
 namespace Wave.Commerce.Tests.Tests.ProductTests;
@@ -14,6 +15,7 @@ public class ProductTest
     }
 
     [Fact]
+    [Category("Unit")]
     public void CreateEntity_ShouldThrowArgumentOutOfRangeException_WhenValueIsNegative()
     {
         // Arrange

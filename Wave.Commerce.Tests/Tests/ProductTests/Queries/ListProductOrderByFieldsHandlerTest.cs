@@ -2,6 +2,7 @@
 using FluentAssertions;
 using Microsoft.Extensions.Logging;
 using Moq;
+using System.ComponentModel;
 using Wave.Commerce.Application.Features.ProductFeatures.Queries;
 using Wave.Commerce.Application.Features.ProductFeatures.Queries.ListProductOrderByFields;
 using Wave.Commerce.Application.Features.ProductFeatures.Queries.ListProductOrderedBy;
@@ -26,7 +27,7 @@ public class ListProductOrderByFieldsHandlerTest
     }
 
     [Fact]
-    [Trait("Category", "Unit")]
+    [Category("Unit")]
     public async Task Handle_ShouldReturnProducts_WhenProductsExistOrderedByName()
     {
         var products = new List<Product>

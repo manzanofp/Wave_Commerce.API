@@ -25,7 +25,7 @@ public class DeleteProductHandlerTest
     }
 
     [Fact]
-    [Trait("Category","Unit")]
+    [Category("Unit")]
     public async Task Handle_ProductExists_ShouldDeleteProduct()
     {
         // Arrange

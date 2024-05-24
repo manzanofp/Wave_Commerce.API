@@ -2,6 +2,7 @@
 using FluentAssertions;
 using Microsoft.Extensions.Logging;
 using Moq;
+using System.ComponentModel;
 using Wave.Commerce.Application.Features.ProductFeatures.Queries;
 using Wave.Commerce.Application.Features.ProductFeatures.Queries.ListProductByName;
 using Wave.Commerce.Domain.Entities.ProductEntity;
@@ -25,7 +26,7 @@ public class ListProductByNameHandlerTest
     }
 
     [Fact]
-    [Trait("Category", "Unit")]
+    [Category("Unit")]
     public async Task Handle_ShouldReturnProducts_WhenProductsExist()
     {
         // Arrange
