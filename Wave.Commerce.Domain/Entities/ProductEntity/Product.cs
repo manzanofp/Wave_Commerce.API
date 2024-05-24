@@ -3,6 +3,9 @@
 namespace Wave.Commerce.Domain.Entities.ProductEntity;
 public class Product : BaseEntity
 {
+
+    private Product() { }
+
     private Product(
         string name, 
         decimal value,

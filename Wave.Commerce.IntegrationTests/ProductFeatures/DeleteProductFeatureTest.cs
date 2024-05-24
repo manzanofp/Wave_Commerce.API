@@ -1,8 +1,11 @@
-﻿using FluentAssertions;
+﻿using Azure.Core;
+using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using System.Net;
 using Wave.Commerce.Domain.Entities.ProductEntity;
 using Wave.Commerce.IntegrationTests.Base;
+using Wave.Commerce.IntegrationTests.Shared;
 
 namespace Wave.Commerce.IntegrationTests.ProductFeatures;
 
@@ -37,5 +40,28 @@ public class DeleteProductFeatureTest : IntegrationTestBase
 
         // Assert
         result.StatusCode.Should().Be(HttpStatusCode.OK);
+    }
+
+    [Fact]
+    public async Task Should_Return_ProblemDetails_When_Product_Dont_Exist()
+    {
+        // Arrange
+        var nonExistingProductId = Guid.NewGuid();
+
+        // Act
+        var response = await _factory.HttpClient
+            .DeleteAsync($"/api/Product/delete/{nonExistingProductId}");
+
+        response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+
+        var content = await response.Content.ReadAsStringAsync();
+
+        var problemDetails = JsonConvert.DeserializeObject<ProblemDetailsDto>(content);
+
+        //Assert
+        problemDetails.Should().NotBeNull();
+        problemDetails!.Title.Should().Be("Bad Request");
+        problemDetails.Status.Should().Be(400);
+        problemDetails.Detail.Should().Be($"Product with id:  {nonExistingProductId} not found");
     }
 }

@@ -44,6 +44,7 @@ public class InsertProductFeatureTest : IntegrationTestBase
 
         var product = await context.Products.FirstOrDefaultAsync(p => p.Id == productId);
 
+        // Assert
         product.Should().NotBeNull();
         product!.Name.Should().Be(command.Name);
         product.Value.Should().Be(command.Value);
