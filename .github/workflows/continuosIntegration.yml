@@ -8,18 +8,25 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v4
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: 6.0.x
-    - name: Restore dependencies
-      run: dotnet restore
-    - name: Build
-      run: dotnet build --no-restore
-    - name: Run unit Tests
-      run: dotnet test --no-build --verbosity normal --project Wave.Commerce.Tests/Wave.Commerce.Tests.csproj --filter "Category=Unit"
+      - uses: actions/checkout@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 6.0.x
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build --no-restore
+
+      - name: Compose
+        run: docker-compose -f docker-compose.yml up
+
+      - name: Run unit Tests
+        run: dotnet test --configuration Release --no-restore --no-build
+
+
+  
