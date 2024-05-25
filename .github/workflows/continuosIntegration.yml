@@ -23,10 +23,13 @@ jobs:
         run: dotnet build --no-restore
 
       - name: Compose
-        run: docker-compose -f docker-compose.yml up
+        run: docker-compose -f docker-compose.yml up -d
 
-      - name: Run unit Tests
-        run: dotnet test --configuration Release --no-restore --no-build  Wave.
+      - name: Run Unit Tests
+        run: dotnet test Wave.Commerce.Tests/Wave.Commerce.Tests.csproj
+
+      - name: Run Integration Tests
+        run: dotnet test Wave.Commerce.IntegrationTests/Wave.Commerce.IntegrationTests.csproj
 
 
   
