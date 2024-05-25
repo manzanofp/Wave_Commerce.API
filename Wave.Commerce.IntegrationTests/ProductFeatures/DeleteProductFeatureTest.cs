@@ -1,6 +1,4 @@
-﻿using Azure.Core;
-using FluentAssertions;
-using Microsoft.EntityFrameworkCore;
+﻿using FluentAssertions;
 using Newtonsoft.Json;
 using System.Net;
 using Wave.Commerce.Domain.Entities.ProductEntity;

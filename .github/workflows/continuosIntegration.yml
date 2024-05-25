@@ -26,7 +26,7 @@ jobs:
         run: docker-compose -f docker-compose.yml up
 
       - name: Run unit Tests
-        run: dotnet test --configuration Release --no-restore --no-build
+        run: dotnet test --configuration Release --no-restore --no-build  Wave.
 
 
   

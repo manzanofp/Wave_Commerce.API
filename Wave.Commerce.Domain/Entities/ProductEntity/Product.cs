@@ -3,11 +3,10 @@
 namespace Wave.Commerce.Domain.Entities.ProductEntity;
 public class Product : BaseEntity
 {
-
     private Product() { }
 
     private Product(
-        string name, 
+        string name,
         decimal value,
         int stockQuantity
         )
@@ -16,7 +15,6 @@ public class Product : BaseEntity
         Value = value;
         StockQuantity = stockQuantity;
     }
-
 
     #region Properties
 
@@ -28,7 +26,7 @@ public class Product : BaseEntity
 
     public static Product CreateEntity(string name, decimal value, int stockQuantity)
     {
-        if(string.IsNullOrWhiteSpace(name))
+        if (string.IsNullOrWhiteSpace(name))
             throw new ArgumentException("Name cannot be null or empty", nameof(name));
 
         if (value < 0)
@@ -38,6 +36,15 @@ public class Product : BaseEntity
             throw new ArgumentOutOfRangeException(nameof(stockQuantity), "StockQuantity cannot be negative.");
 
         return new Product(name, value, stockQuantity);
+    }
+
+    public static Product CreateEntity(Guid id, string name, decimal value, int stockQuantity)
+    {
+        var product = CreateEntity(name, value, stockQuantity);
+
+        product.Id = id;
+
+        return product;
     }
 
     public void UpdateFields(string name, decimal value, int stockQuantity)

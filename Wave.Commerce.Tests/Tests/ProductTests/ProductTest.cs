@@ -15,7 +15,6 @@ public class ProductTest
     }
 
     [Fact]
-    [Category("Unit")]
     public void CreateEntity_ShouldThrowArgumentOutOfRangeException_WhenValueIsNegative()
     {
         // Arrange
