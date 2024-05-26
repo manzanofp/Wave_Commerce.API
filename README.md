@@ -2,7 +2,7 @@
 Repositório com o projeto para a vaga de desenvolvedor backend dotnet Júnior.
 
 ### 📌 Sobre o Projeto
-Esta API é responsável por realizar o CRUD de um Produto. e possui como funcionalidades pricipais:
+Esta API é responsável por realizar o CRUD de um Produto. e possui como funcionalidades principais:
 * Fornece Endpoints com as operações de acordo a regra de negócio estabelecida.
 * Armazenamento dos dados no PostgreSQL.
 * Conteinerização da aplicação em Docker para utilizar em qualquer máquina.
@@ -24,9 +24,9 @@ Utilizei essa abordagem, pois permite maior controle sobre o modelo de dados dir
 
 # Command Query Responsability Segregation
 Durante conversa técnica foi discutido sobre o uso do pattern em meu dia a dia em outros projetos, por isso optei por implementar esse pattern para separar operações de leitura e escrita. Alguns benefícios do CQRS incluem:
-    * Separação de preocupações: Facilita a manutenção, pois a lógica de leitura e escrita são independentes.
-    * Escalabilidade: Permite escalar a leitura e escrita de forma independente, melhorando o desempenho.
-    *Simplificação de modelos: Os modelos de leitura podem ser otimizados para consultas, enquanto os de escrita podem focar na consistência dos dados.
+* Separação de preocupações: Facilita a manutenção, pois a lógica de leitura e escrita são independentes.
+* Escalabilidade: Permite escalar a leitura e escrita de forma independente, melhorando o desempenho.
+* Simplificação de modelos: Os modelos de leitura podem ser otimizados para consultas, enquanto os de escrita podem focar na consistência dos dados.
 
 ### 🛠️ Construído com
 
