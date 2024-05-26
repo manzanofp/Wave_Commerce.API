@@ -73,13 +73,13 @@ Verifique se o arquivo docker-compose está nessa pasta para prosseguir
 ```
 
 ```
-execute a aplicação:
-docker-compose up -build
-comando necessário para buildar a aplicação no docker.
+execute a aplicação com build:
+docker-compose up --build
+comando necessário para buildar a aplicação no docker, após isso sua aplicação irá rodar localmente.
 ```
 
 ```
-execute a aplicação:
+execute a aplicação sem os logs:
 docker-compose up -d
 para subir a aplicação sem os logs você pode utilizar esse comando acima.
 ```
