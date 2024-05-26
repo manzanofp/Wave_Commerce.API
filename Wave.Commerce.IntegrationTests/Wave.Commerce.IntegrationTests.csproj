@@ -29,6 +29,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Wave.Commerce.API\Wave.Commerce.API.csproj" />
+    <ProjectReference Include="..\Wave.Commerce.Tests\Wave.Commerce.Tests.csproj" />
   </ItemGroup>
 
 </Project>

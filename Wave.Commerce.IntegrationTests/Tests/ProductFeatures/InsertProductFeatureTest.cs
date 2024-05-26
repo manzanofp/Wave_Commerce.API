@@ -1,23 +1,24 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using FluentAssertions;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
-using System.Net.Http.Json;
 using System.Net;
-using Wave.Commerce.Application.Features.ProductFeatures.Commands.InsertProduct;
+using System.Net.Http.Json;
 using Wave.Commerce.IntegrationTests.Base;
-using FluentAssertions;
+using Wave.Commerce.Tests.Shared;
 
-namespace Wave.Commerce.IntegrationTests.ProductFeatures;
+namespace Wave.Commerce.IntegrationTests.Tests.ProductFeatures;
 
 [Collection(nameof(SharedTestCollection))]
 public class InsertProductFeatureTest : IntegrationTestBase
 {
     private readonly CustomWebApplicationFactory _factory;
+    private readonly FakeRequests _commands;
 
     public InsertProductFeatureTest(CustomWebApplicationFactory factory) : base(factory)
     {
         _factory = factory;
+        _commands = new FakeRequests();
     }
-
 
     [Fact]
     public async Task Should_Return_ProductId_When_Product_IsValid()
@@ -25,10 +26,7 @@ public class InsertProductFeatureTest : IntegrationTestBase
         // Arrange
         var (context, _) = GetDbContext();
 
-        var command = new InsertProductCommand(
-            "Product Name",
-            1299.99m,
-            50);
+        var command = _commands.CreateValidInsertCommand();
 
         // Act
         var response = await _factory.HttpClient

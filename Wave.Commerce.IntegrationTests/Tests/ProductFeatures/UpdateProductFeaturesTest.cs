@@ -2,20 +2,23 @@
 using Microsoft.EntityFrameworkCore;
 using System.Net;
 using System.Net.Http.Json;
-using Wave.Commerce.Application.Features.ProductFeatures.Commands.UpdateProduct;
-using Wave.Commerce.Domain.Entities.ProductEntity;
 using Wave.Commerce.IntegrationTests.Base;
+using Wave.Commerce.Tests.Shared;
 
-namespace Wave.Commerce.IntegrationTests.ProductFeatures;
+namespace Wave.Commerce.IntegrationTests.Tests.ProductFeatures;
 
 [Collection(nameof(SharedTestCollection))]
 public class UpdateProductFeaturesTest : IntegrationTestBase
 {
     private readonly CustomWebApplicationFactory _factory;
+    private readonly FakeRequests _commands;
+    private readonly FakeProduct _product;
 
     public UpdateProductFeaturesTest(CustomWebApplicationFactory factory) : base(factory)
     {
         _factory = factory;
+        _commands = new FakeRequests();
+        _product = new FakeProduct();
     }
 
     [Fact]
@@ -24,15 +27,11 @@ public class UpdateProductFeaturesTest : IntegrationTestBase
         // Arrange
         var (context, _) = GetDbContext();
 
-        var product = Product.CreateEntity("Product Name", 1299.99m, 50);
+        var product = _product.CreateValidEntity();
         context.Products.Add(product);
         await context.SaveChangesAsync();
 
-        var command = new UpdateProductCommand(
-            product.Id,
-            "Product Name updated",
-            1299.99m,   
-            50);
+        var command = _commands.CreateValidUpdateCommand(product.Id, "New Name Product", product.Value, 300);
 
         // Act
         var response = await _factory.HttpClient

@@ -1,12 +1,11 @@
-﻿using Bogus;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Microsoft.Extensions.Logging;
 using Moq;
-using System.ComponentModel;
 using Wave.Commerce.Application.Features.ProductFeatures.Queries;
 using Wave.Commerce.Application.Features.ProductFeatures.Queries.ListProductByName;
 using Wave.Commerce.Domain.Entities.ProductEntity;
 using Wave.Commerce.Domain.Entities.ProductEntity.Repositories;
+using Wave.Commerce.Tests.Shared;
 
 namespace Wave.Commerce.Tests.Tests.ProductTests.Queries;
 
@@ -15,40 +14,28 @@ public class ListProductByNameHandlerTest
     private readonly Mock<IProductRepository> _mockProductRepository;
     private readonly Mock<ILogger<ListProductByNameHandler>> _mockLogger;
     private readonly ListProductByNameHandler _handler;
-    private readonly Faker _faker;
+    private readonly FakeRequests _query;
+    private readonly FakeProduct _product;
 
     public ListProductByNameHandlerTest()
     {
         _mockProductRepository = new Mock<IProductRepository>();
         _mockLogger = new Mock<ILogger<ListProductByNameHandler>>();
         _handler = new ListProductByNameHandler(_mockProductRepository.Object, _mockLogger.Object);
-        _faker = new Faker();
+        _query = new FakeRequests();
+        _product = new FakeProduct();
     }
 
     [Fact]
-    [Category("Unit")]
     public async Task Handle_ShouldReturnProducts_WhenProductsExist()
     {
         // Arrange
-        var productName = _faker.Commerce.ProductName();
-        var products = new List<Product>
-        {
-            Product.CreateEntity(
-                productName,
-                _faker.Random.Decimal(1, 1000),
-                _faker.Random.Int(1, 100)
-            ),
-            Product.CreateEntity(
-                productName,
-                _faker.Random.Decimal(1, 1000),
-                _faker.Random.Int(1, 100)
-            )
-        };
+        var product = _product.CreateValidEntity();
+        var query = _query.CreateValidListProductByNameQuery(product.Name);
+        var products = _product.CreateProductList(product.Name);
 
-        _mockProductRepository.Setup(repo => repo.GetByName(productName))
+        _mockProductRepository.Setup(repo => repo.GetByName(product.Name))
             .ReturnsAsync(products);
-
-        var query = new ListProductByNameQuery(productName);
 
         // Act
         var result = await _handler.Handle(query, CancellationToken.None);
@@ -58,42 +45,38 @@ public class ListProductByNameHandlerTest
         result.Value.Should().NotBeNull();
         result.Value.Should().HaveCount(products.Count);
 
-        var expectedResults = products.Select(MapToProductResult).ToList();
+        var expectedResults = products.Select(_product.MapToProductResult).ToList();
         result.Value.Should().BeEquivalentTo(expectedResults, options => options.ComparingByMembers<ProductResult>());
     }
 
     [Fact]
-    [Trait("Category", "Unit")]
     public async Task Handle_ShouldReturnError_WhenProductsDoNotExist()
     {
         // Arrange
-        var productName = _faker.Commerce.ProductName();
+        var product = _product.CreateValidEntity();
+        var query = _query.CreateValidListProductByNameQuery(product.Name);
 
-        _mockProductRepository.Setup(repo => repo.GetByName(productName))
+        _mockProductRepository.Setup(repo => repo.GetByName(product.Name))
             .ReturnsAsync((List<Product>)null);
-
-        var query = new ListProductByNameQuery(productName);
 
         // Act
         var result = await _handler.Handle(query, CancellationToken.None);
 
         // Assert
         result.IsSuccess.Should().BeFalse();
-        result.Error.Message.Should().Be($"Product with name:  {productName} not found.");
+        result.Error.Message.Should().Be($"Product with name:  {product.Name} not found.");
     }
 
     [Fact]
-    [Trait("Category", "Unit")]
     public async Task Handle_ShouldReturnError_WhenRepositoryThrowsException()
     {
         // Arrange
-        var productName = _faker.Commerce.ProductName();
+        var product = _product.CreateValidEntity();
+        var query = _query.CreateValidListProductByNameQuery(product.Name);
         var exceptionMessage = "Database failure";
 
-        _mockProductRepository.Setup(repo => repo.GetByName(productName))
+        _mockProductRepository.Setup(repo => repo.GetByName(product.Name))
             .ThrowsAsync(new Exception(exceptionMessage));
-
-        var query = new ListProductByNameQuery(productName);
 
         // Act
         var result = await _handler.Handle(query, CancellationToken.None);
@@ -101,15 +84,5 @@ public class ListProductByNameHandlerTest
         // Assert
         result.IsSuccess.Should().BeFalse();
         result.Error.Message.Should().Be($"Error When trying to List products By Name: {exceptionMessage}");
-    }
-
-    private ProductResult MapToProductResult(Product product)
-    {
-        return new ProductResult(
-            product.Id,
-            product.Name,
-            product.Value,
-            product.StockQuantity
-        );
     }
 }

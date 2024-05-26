@@ -1,11 +1,10 @@
-﻿using Bogus;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Microsoft.Extensions.Logging;
 using Moq;
-using System.ComponentModel;
 using Wave.Commerce.Application.Features.ProductFeatures.Commands.DeleteProduct;
 using Wave.Commerce.Domain.Entities.ProductEntity;
 using Wave.Commerce.Domain.Entities.ProductEntity.Repositories;
+using Wave.Commerce.Tests.Shared;
 
 namespace Wave.Commerce.Tests.Tests.ProductTests.Commands;
 
@@ -14,32 +13,25 @@ public class DeleteProductHandlerTest
     private readonly Mock<IProductRepository> _mockProductRepository;
     private readonly Mock<ILogger<DeleteProductHandler>> _mockLogger;
     private readonly DeleteProductHandler _handler;
-    private readonly Faker _faker;
+    private readonly FakeRequests _commands;
+    private readonly FakeProduct _product;
 
     public DeleteProductHandlerTest()
     {
         _mockProductRepository = new Mock<IProductRepository>();
         _mockLogger = new Mock<ILogger<DeleteProductHandler>>();
         _handler = new DeleteProductHandler(_mockProductRepository.Object, _mockLogger.Object);
-        _faker = new Faker();
+        _commands = new FakeRequests();
+        _product = new FakeProduct();
     }
 
     [Fact]
-    [Category("Unit")]
     public async Task Handle_ProductExists_ShouldDeleteProduct()
     {
         // Arrange
         var productId = Guid.NewGuid();
-
-        var product = Product.CreateEntity(
-            _faker.Commerce.ProductName(),
-            _faker.Random.Decimal(1, 1000),
-            _faker.Random.Int(1, 100));
-
-        var command = new DeleteProductCommand
-        (
-            productId
-        );
+        var command = _commands.CreateValidDeleteCommand(productId);
+        var product = _product.CreateValidEntity();
 
         _mockProductRepository.Setup(repo => repo.GetById(It.IsAny<Guid>())).ReturnsAsync(product);
 
@@ -56,14 +48,11 @@ public class DeleteProductHandlerTest
 
 
     [Fact]
-    [Trait("Category", "Unit")]
     public async Task Handle_ProductDoesNotExist_ShouldReturnError()
     {
         // Arrange
-        var command = new DeleteProductCommand
-        (
-            _faker.Random.Guid()
-        );
+        var productId = Guid.NewGuid();
+        var command = _commands.CreateValidDeleteCommand(productId);
 
         _mockProductRepository.Setup(repo => repo.GetById(It.IsAny<Guid>())).ReturnsAsync((Product)null);
 
@@ -79,21 +68,12 @@ public class DeleteProductHandlerTest
     }
 
     [Fact]
-    [Trait("Category", "Unit")]
     public async Task Handle_RepositoryThrowsException_ShouldReturnError()
     {
         // Arrange
         var productId = Guid.NewGuid();
-
-        var product = Product.CreateEntity(
-            _faker.Commerce.ProductName(),
-            _faker.Random.Decimal(1, 1000),
-            _faker.Random.Int(1, 100));
-
-        var command = new DeleteProductCommand
-        (
-            productId
-        );
+        var command = _commands.CreateValidDeleteCommand(productId);
+        var product = _product.CreateValidEntity();
 
         var exceptionMessage = "Database failure";
 

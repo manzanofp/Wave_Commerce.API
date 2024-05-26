@@ -4,10 +4,10 @@ using System.Net;
 using Wave.Commerce.Application.Features.ProductFeatures.Queries;
 using Wave.Commerce.Domain.Entities.ProductEntity;
 using Wave.Commerce.IntegrationTests.Base;
-using Wave.Commerce.IntegrationTests.Shared;
 using Wave.Commerce.Persistence.Context;
+using FakeProduct = Wave.Commerce.IntegrationTests.Shared.FakeProduct;
 
-namespace Wave.Commerce.IntegrationTests.ProductFeatures;
+namespace Wave.Commerce.IntegrationTests.Tests.ProductFeatures;
 
 [Collection(nameof(SharedTestCollection))]
 public class ListProductFeaturesTest : IntegrationTestBase

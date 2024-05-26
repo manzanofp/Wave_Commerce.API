@@ -1,22 +1,23 @@
 ﻿using FluentAssertions;
 using Newtonsoft.Json;
 using System.Net;
-using Wave.Commerce.Domain.Entities.ProductEntity;
 using Wave.Commerce.IntegrationTests.Base;
 using Wave.Commerce.IntegrationTests.Shared;
+using FakeProduct = Wave.Commerce.Tests.Shared.FakeProduct;
 
-namespace Wave.Commerce.IntegrationTests.ProductFeatures;
+namespace Wave.Commerce.IntegrationTests.Tests.ProductFeatures;
 
 [Collection(nameof(SharedTestCollection))]
 public class DeleteProductFeatureTest : IntegrationTestBase
 {
     private readonly CustomWebApplicationFactory _factory;
+    private readonly FakeProduct _product;
 
     public DeleteProductFeatureTest(CustomWebApplicationFactory factory) : base(factory)
     {
         _factory = factory;
+        _product = new FakeProduct();
     }
-
 
     [Fact]
     public async Task Should_Delete_Product_When_Valid()
@@ -24,10 +25,7 @@ public class DeleteProductFeatureTest : IntegrationTestBase
         // Arrange
         var (context, _) = GetDbContext();
 
-        var product = Product.CreateEntity(
-            "Product for Delete",
-            100.00m,
-            20);
+        var product = _product.CreateValidEntity();
 
         context.Products.Add(product);
         await context.SaveChangesAsync();
