@@ -17,7 +17,7 @@ Abordagens que foram utilizadas durante a construção do Software.
 - **Wave.Commerce.Persistence**: Implementa a camada de acesso a dados utilizando Entity Framework.
 - **Wave.Commerce.DependencyInjection**: Configura a injeção de dependências para todo o projeto.
 - **Wave.Commerce.Tests**: Inclui testes unitários para validar a lógica de negócio.
-- **Wave.Commerce.IntegrationTests**: Contém testes de integração para assegurar a interação correta entre diferentes partes do sistema.
+- **Wave.Commerce.IntegrationTests**: Contém testes de integração para assegurar a interação correta entre diferentes partes do sistema. "Para testar os testes unitários é necessario rodar a aplicação com docker"
 
 # Code-First com EntityFramework
 Utilizei essa abordagem, pois permite maior controle sobre o modelo de dados diretamente no código. Isso facilita o versionamento e a evolução do esquema do banco de dados conforme o projeto se desenvolve.
@@ -29,7 +29,6 @@ Durante conversa técnica foi discutido sobre o uso do pattern em meu dia a dia 
 * Simplificação de modelos: Os modelos de leitura podem ser otimizados para consultas, enquanto os de escrita podem focar na consistência dos dados.
 
 ### 🛠️ Construído com
-
 -   [C#](https://learn.microsoft.com/pt-br/dotnet/csharp/) - Linguagem de Programação
 -   [.NET 6.0](https://learn.microsoft.com/pt-br/dotnet/fundamentals/) - Plataforma de desenvolvimento
 -   [PostgreSQL](https://www.postgresql.org/docs/) - Sistema gerenciador de banco de dados relacional
