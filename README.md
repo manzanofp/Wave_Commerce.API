@@ -1,5 +1,5 @@
 ### Wave_Commerce.API
-Repositório com o projeto para a vaga de desenvolvedor backend dotnet Júnior.
+Repositório com o projeto para a vaga de desenvolvedor backend dotnet Júnior, os requisitos solicitados estão no arquivo "Requisitos do Sistema.txt"
 
 ### 📌 Sobre o Projeto
 Esta API é responsável por realizar o CRUD de um Produto. e possui como funcionalidades principais:

@@ -1,0 +1,27 @@
+Projeto Wave Commerce
+Desenvolva uma API para realizar o CRUD de Produtos.
+
+Requisitos Funcionais:
+- Criar um produto
+- O valor do produto não pode ser negativo
+- Atualizar um produto
+- Deletar um produto
+- Listar os produtos
+- Visualizar um produto específico
+- Ordenar os produtos por diferentes campos
+- Buscar produto pelo nome
+
+Não Funcionais:
+- Subir o código em um repositório público no github
+- README no projeto com breve explicação dos projetos incluídos em sua Solution
+- Utilizar .NET 6 ou superior
+- Utilizar o Entity Framework
+- Pode usar code-first ou db-first, mas o uso deve estar detalhado no README
+- Popular a base de dados com 5 produtos ao iniciar a aplicação
+- A entidade de Produto deve conter pelo menos: Nome, Estoque e Valor
+- Incluir projeto de testes unitários.
+
+Bonus:
+- Utilizar padrões de projeto
+- Utilizar github actions para os testes
+- Incluir testes de integração
